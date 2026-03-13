@@ -1,0 +1,183 @@
+/* --- CSS STYLING --- */
+:root {
+    --btn-color: #2D3C5A;
+    --btn-hover: #465A82;
+    --x-color: #FF6464;
+    --o-color: #64FF64;
+    --grid-color: #64C8FF;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: white;
+    /* Smooth transition for background changes */
+    transition: background-color 10s linear;
+    user-select: none;
+}
+
+/* Canvas for Particles */
+#bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+/* Screen Management */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Overlays for Pause/Game Over */
+.overlay {
+    background: rgba(30, 30, 50, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+h1 {
+    font-size: 8vh;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+h2 { 
+    font-size: 4vh; 
+    margin-bottom: 20px; 
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5); 
+}
+
+/* Buttons */
+.btn {
+    background-color: var(--btn-color);
+    color: white;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-size: 3vh;
+    font-family: inherit;
+    cursor: pointer;
+    margin: 10px;
+    width: 300px;
+    max-width: 80vw;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.btn:hover {
+    background-color: var(--btn-hover);
+    transform: scale(1.05);
+}
+
+.btn-small {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 2vh;
+}
+
+/* Specific Layouts */
+.top-left-controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.bottom-right-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.turn-indicator {
+    position: absolute;
+    top: 30px;
+    font-size: 3vh;
+}
+
+/* Game Board */
+.board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    background-color: var(--grid-color);
+    border: 5px solid var(--grid-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.cell {
+    width: clamp(80px, 15vw, 150px);
+    height: clamp(80px, 15vw, 150px);
+    background-color: rgba(20, 25, 40, 0.8); /* See-through to background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(40px, 10vw, 80px);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cell:hover { 
+    background-color: rgba(40, 50, 80, 0.9); 
+}
+
+.x-mark { 
+    color: var(--x-color); 
+    text-shadow: 0 0 10px rgba(255,100,100,0.5); 
+}
+
+.o-mark { 
+    color: var(--o-color); 
+    text-shadow: 0 0 10px rgba(100,255,100,0.5); 
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 300px;
+    font-size: 2.5vh;
+    margin-bottom: 5px;
+}
+
+.target-text {
+    color: #ccc;
+    font-size: 2vh;
+    text-align: center;
+}
+
+#win-text {
+    color: gold;
+    font-size: 4vh;
+    margin-bottom: 30px;
+}

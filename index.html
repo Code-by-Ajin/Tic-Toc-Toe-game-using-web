@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Main Menu -->
+    <div id="MAIN_MENU" class="screen active">
+        <h1>TIC TAC TOE</h1>
+        <button class="btn init-audio" onclick="setState('MODE_SELECT')">Start Game</button>
+        <button class="btn" onclick="toggleFullscreen()">Fullscreen toggle</button>
+        <div class="bottom-right-controls">
+            <button id="btn-music" class="btn btn-small init-audio" onclick="toggleMusic()">Music: ON</button>
+        </div>
+    </div>
+
+    <!-- Mode Select -->
+    <div id="MODE_SELECT" class="screen">
+        <div class="top-left-controls">
+            <button class="btn btn-small" onclick="setState('MAIN_MENU')">Back</button>
+        </div>
+        <h1>Select Mode</h1>
+        <button class="btn" onclick="setMode('SINGLE')">Single Player</button>
+        <button class="btn" onclick="setMode('MULTI')">Multiplayer</button>
+    </div>
+
+    <!-- Difficulty Select -->
+    <div id="DIFF_SELECT" class="screen">
+        <div class="top-left-controls">
+            <button class="btn btn-small" onclick="setState('MODE_SELECT')">Back</button>
+        </div>
+        <h1>Difficulty</h1>
+        <button class="btn" onclick="setDifficulty('EASY')">Easy</button>
+        <button class="btn" onclick="setDifficulty('MEDIUM')">Medium</button>
+        <button class="btn" onclick="setDifficulty('HARD')">Hard</button>
+    </div>
+
+    <!-- Round Select -->
+    <div id="ROUND_SELECT" class="screen">
+        <div class="top-left-controls">
+            <button class="btn btn-small" onclick="goBackFromRounds()">Back</button>
+        </div>
+        <h1>Rounds to Win</h1>
+        <button class="btn" onclick="setRounds(5)">5 Rounds</button>
+        <button class="btn" onclick="setRounds(10)">10 Rounds</button>
+        <button class="btn" onclick="setRounds(15)">15 Rounds</button>
+        <button class="btn" onclick="setRounds(20)">20 Rounds</button>
+    </div>
+
+    <!-- Playing Screen -->
+    <div id="PLAYING" class="screen">
+        <div class="top-left-controls">
+            <button class="btn btn-small" onclick="setState('MAIN_MENU')">Back</button>
+            <button class="btn btn-small" onclick="setState('PAUSED')">Pause</button>
+        </div>
+        <div id="turn-indicator" class="turn-indicator">Turn: Player 1 (X)</div>
+        
+        <div class="board-container">
+            <div class="board" id="game-board"></div>
+            <div class="scoreboard">
+                <span id="score-p1" class="x-mark">Player 1 (X): 0</span>
+                <span id="score-p2" class="o-mark">Player 2 (O): 0</span>
+            </div>
+            <div id="target-rounds" class="target-text">First to 5 wins!</div>
+        </div>
+    </div>
+
+    <!-- Pause Menu -->
+    <div id="PAUSED" class="screen overlay">
+        <h1>PAUSED</h1>
+        <button class="btn" onclick="setState('PLAYING')">Resume</button>
+        <button class="btn" onclick="restartGame()">Restart Game</button>
+        <button class="btn" onclick="setState('MAIN_MENU')">Main Menu</button>
+    </div>
+
+    <!-- Game Over Menu -->
+    <div id="GAME_OVER" class="screen overlay">
+        <h1>CONGRATULATIONS!</h1>
+        <div id="win-text">Player 1 Won the Match!</div>
+        <button class="btn" onclick="restartGame()">Replay</button>
+        <button class="btn" onclick="setState('MAIN_MENU')">Main Menu</button>
+    </div>
+
+    <!-- AUDIO ELEMENT (Removed 'loop' so it can switch songs) -->
+    <audio id="bg-music"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
